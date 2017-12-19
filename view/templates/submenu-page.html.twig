@@ -1,0 +1,57 @@
+<p>Nessa tela você poderá ordenar os produtos em destaque na Home.</p>
+
+<h4>Marcar Produto como Destaque</h4>
+<p><b>Para marcar um produto como Destaque você deve acessar menu Produtos:</b></p>
+<ol>
+    <li>Encontre o produto na listagem</li>
+    <li>Clique no ícone Estrela</li>
+</ol>
+
+<h4>Ordenando</h4>
+<p>Após adicionar um produto como Destaque ele ficará visível abaixo para que você possa ordená-lo.</p>
+<ol>
+    <li>Você ordenará informando valores numéricos em frente ao nome do produto</li>
+    <li>O produto é ordenado do menor para o maior</li>
+    <li>Após definir a ordem, clique em <b>SALVAR ORDEM</b></li>
+</ol>
+
+<form action="{{form_action}}" method="post">
+    <input type="hidden" name="action" value="wc-featured-sort-save">
+    <table class="wp-list-table widefat fixed striped posts">
+        <thead>
+            <tr>
+                <th width="10%" class="manage-column column-order">Ordem</th>
+                <th id="thumb" class="manage-column column-thumb">
+                    <span class="wc-image tips"></span>
+                </th>
+                <th class="manage-column column-name column-primary">Nome</th>
+                <th class="manage-column column-price">Preço</th>
+                <th class="manage-column column-category">Categoria</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td class="category column-category">
+                    <input type="number" name="product_order[{{product.ID}}]" value="{{product.menu_order}}" style="width: 100%;">
+                </td>
+                <td class="thumb column-thumb">
+                    <img width="150" height="150" src="{{helper.productThumbUrl(product)}}" alt="">
+                </td>
+                <td class="name column-name">{{product.post_title}}</td>
+                <td class="price column-price">{{helper.productPrice(product)}}</td>
+                <td class="order column-order">{{helper.productCategoryNames(product)}}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <button type="submit" class="wp-featured-sort-action">SALVAR ORDEM</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</form>

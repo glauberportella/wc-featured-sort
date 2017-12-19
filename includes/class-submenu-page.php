@@ -21,6 +21,15 @@ class Submenu_Page {
      * Submenu class.
      */
     public function render() {
-        echo 'Adicionar o sistema de ordenação de Produtos Destaque Aqui';
+        $helper = new Helper();
+        $featured = new Featured();
+        $products = $featured->get();
+        $action_url = admin_url('admin.php');
+        echo TemplateEngine::instance()->render('submenu-page.html.twig', array(
+            // template variables
+            'helper' => $helper,
+            'products' => $products,
+            'form_action' => $action_url,
+        ));
     }
 }

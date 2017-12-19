@@ -46,7 +46,7 @@ class Submenu {
      */
     public function add_options_page() {
         add_submenu_page(
-            'woocommerce',
+            'edit.php?post_type=product',
             'Ordenar Destaques',
             'Ordenar Produtos Destaque',
             'manage_options',

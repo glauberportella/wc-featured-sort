@@ -17,7 +17,7 @@ class TemplateEngine {
         if (!$this->instance) {
             $loader = new Twig_Loader_Filesystem(dirname(__FILE__).'/../view/templates');
             $this->instance = new Twig_Environment($loader, array(
-                'cache' => dirname(__FILE__).'/../cache'
+                //'cache' => dirname(__FILE__).'/../cache'
             ));
         }
         return $this->instance;
